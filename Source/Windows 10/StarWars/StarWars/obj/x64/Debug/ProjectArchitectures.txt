@@ -1,0 +1,1 @@
+D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\StarWars.csproj;x64
