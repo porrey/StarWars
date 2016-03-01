@@ -1,0 +1,284 @@
+﻿<common:BindablePage x:Class="StarWars.Views.MainPage"
+					 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					 xmlns:local="using:StarWars.Views"
+					 xmlns:common="using:StarWars.Common"
+					 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					 mc:Ignorable="d"
+					 RequestedTheme="Dark">
+	<Border>
+		<Border.Background>
+			<ImageBrush Stretch="UniformToFill"
+						ImageSource="ms-appx:///Assets/DeathStarPFStarWars.png" />
+		</Border.Background>
+		<Grid Background="#33000000">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="65" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<!-- Menu Button -->
+			<StackPanel Grid.Row="0"
+						Orientation="Horizontal">
+				<Button x:Name="menuButton"
+						Margin="2,5,0,5"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Left"
+						Width="46"
+						Height="46"
+						Click="MenuButton_Click">
+					<Button.Content>
+						<FontIcon Glyph="&#xE700;" />
+					</Button.Content>
+				</Button>
+
+				<StackPanel Orientation="Vertical">
+					<TextBlock VerticalAlignment="Center"
+							   HorizontalAlignment="Left"
+							   Text="Star Wars 3D Art"
+							   Margin="10,0,0,0"
+							   FontSize="24" />
+					<TextBlock VerticalAlignment="Center"
+							   HorizontalAlignment="Left"
+							   Text="Control Panel"
+							   Margin="10,0,0,0"
+							   FontSize="14" />
+				</StackPanel>
+			</StackPanel>
+
+			<!-- Split View -->
+			<SplitView Grid.Row="1"
+					   x:Name="SplitView"
+					   IsPaneOpen="{x:Bind IsPaneOpen, Mode=TwoWay}">
+
+				<!-- Menu -->
+				<SplitView.Pane>
+					<StackPanel Orientation="Vertical">
+						<!-- Control Panel-->
+						<HyperlinkButton Style="{ThemeResource PivotTitleContentControlStyle}"
+										 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+										 Click="ControlPanel_Click">
+							<HyperlinkButton.Content>
+								<StackPanel Orientation="Horizontal">
+									<SymbolIcon Symbol="Keyboard"
+												Margin="5,5,5,5" />
+									<TextBlock Text="Control Panel"
+											   VerticalAlignment="Center"
+											   Margin="10,0,10,0" />
+								</StackPanel>
+							</HyperlinkButton.Content>
+						</HyperlinkButton>
+
+						<!-- Separator-->
+						<Rectangle Height="1"
+								   Margin="10,5,10,5"
+								   Fill="{ThemeResource ApplicationForegroundThemeBrush}" />
+
+						<!-- Cloud Setup-->
+						<HyperlinkButton Style="{ThemeResource PivotTitleContentControlStyle}"
+										 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+										 Click="CloudSetup_Click">
+							<HyperlinkButton.Content>
+								<StackPanel Orientation="Horizontal">
+									<SymbolIcon Symbol="Edit"
+												Margin="5,5,5,5" />
+									<TextBlock Text="Cloud Setup"
+											   VerticalAlignment="Center"
+											   Margin="10,0,10,0" />
+								</StackPanel>
+							</HyperlinkButton.Content>
+						</HyperlinkButton>
+
+						<!-- Settings-->
+						<HyperlinkButton Style="{ThemeResource PivotTitleContentControlStyle}"
+										 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+										 Click="Settings_Click">
+							<HyperlinkButton.Content>
+								<StackPanel Orientation="Horizontal">
+									<SymbolIcon Symbol="Setting"
+												Margin="5,5,5,5" />
+									<TextBlock Text="Settings"
+											   VerticalAlignment="Center"
+											   Margin="10,0,10,0" />
+								</StackPanel>
+							</HyperlinkButton.Content>
+						</HyperlinkButton>
+
+						<!-- Separator-->
+						<Rectangle Height="1"
+								   Margin="10,5,10,5"
+								   Fill="{ThemeResource ApplicationForegroundThemeBrush}" />
+
+						<!-- Reset Settings-->
+						<HyperlinkButton Style="{ThemeResource PivotTitleContentControlStyle}"
+										 Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+										 Click="ResetSettings_Click">
+							<HyperlinkButton.Content>
+								<StackPanel Orientation="Horizontal">
+									<SymbolIcon Symbol="ReShare"
+												Margin="5,5,5,5" />
+									<TextBlock Text="Reset Settings"
+											   VerticalAlignment="Center"
+											   Margin="10,0,10,0" />
+								</StackPanel>
+							</HyperlinkButton.Content>
+						</HyperlinkButton>
+					</StackPanel>
+				</SplitView.Pane>
+
+				<!-- Page Content -->
+				<SplitView.Content>
+					<Grid Margin="10,20,10,20">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*" />
+							<ColumnDefinition Width="1*" />
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Grid.Column="0">
+							<TextBlock Text="Light Saber"
+									   Margin="20,10,20,10"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Top" />
+
+							<Button  Content="Turn On"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="LightSaber_On_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<TextBlock Text="Darth Vader Voice"
+									   Margin="20,10,20,10"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Top" />
+
+							<Button  Content="Breathe"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Darkside"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Taught You Well"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Last Time"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Give In"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Resist"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Destroy"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Respect"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+						</StackPanel>
+
+						<StackPanel Grid.Column="1">
+							<TextBlock Text="Light Saber"
+									   Margin="20,10,20,10"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Top" />
+
+							<Button  Content="On"
+									 HorizontalAlignment="Stretch"
+									 VerticalAlignment="Top"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Off"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<TextBlock Text="Darth Vader Eyes"
+									   Margin="20,10,20,10"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Top" />
+
+							<Button  Content="On"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+
+							<Button  Content="Off"
+									 HorizontalAlignment="Stretch"
+									 Margin="20,10,20,10"
+									 Click="Button_Click"
+									 Foreground="#FFFFFFFF"
+									 BorderBrush="#FFFF0000"
+									 Background="#66AC0000">
+							</Button>
+						</StackPanel>
+					</Grid>
+				</SplitView.Content>
+			</SplitView>
+		</Grid>
+	</Border>
+</common:BindablePage>

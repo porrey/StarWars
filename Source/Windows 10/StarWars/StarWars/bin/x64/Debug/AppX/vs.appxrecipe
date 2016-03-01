@@ -9,8 +9,8 @@
     <SolutionConfiguration>Debug|x64</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>ad72b143-f387-4f71-90bb-d6e9c220fded</PackageIdentityName>
-    <IntermediateOutputPath>D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\obj\x64\Debug\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>938D7D580CB4DEC73FF82DDD8CBFD1C39A65B7D9852F5A3B77FDAEF4B5D4F320</RegisteredManifestChecksum>
+    <IntermediateOutputPath>D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x64\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>E479AE64F2EB264BFE6E3F581E956CE5C17E2A4A14BFED5AFBBD64847085543D</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>ad72b143-f387-4f71-90bb-d6e9c220fded_1.0.0.0_x64__4jdacjwc0e74a</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>ad72b143-f387-4f71-90bb-d6e9c220fded_4jdacjwc0e74a!App</RegisteredUserModeAppID>
     <RegisteredPackageID>ad72b143-f387-4f71-90bb-d6e9c220fded</RegisteredPackageID>
@@ -19,16 +19,20 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-02-28T13:51:41.960</Modified>
+      <Modified>2016-03-01T01:06:32.574</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\bin\x64\Debug\StarWars.exe">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\bin\x64\Debug\StarWars.exe">
       <PackagePath>entrypoint\StarWars.exe</PackagePath>
-      <Modified>2016-02-28T13:51:41.297</Modified>
+      <Modified>2016-03-01T01:06:31.532</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\CommonServiceLocator\1.3.0\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll">
+      <PackagePath>Microsoft.Practices.ServiceLocation.dll</PackagePath>
+      <Modified>2015-12-30T20:06:21.031</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\Microsoft.CSharp\4.0.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -93,6 +97,10 @@
     <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\Newtonsoft.Json\8.0.2\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
       <Modified>2016-01-23T14:44:51.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\Prism.PubSubEvents\1.1.2\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll">
+      <PackagePath>Microsoft.Practices.Prism.PubSubEvents.dll</PackagePath>
+      <Modified>2015-12-30T20:06:21.045</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\System.AppContext\4.0.0\lib\netcore50\System.AppContext.dll">
       <PackagePath>System.AppContext.dll</PackagePath>
@@ -446,59 +454,83 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2015-12-29T15:14:41.669</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2016-02-28T02:50:34.642</Modified>
+    <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\Unity\4.0.1\lib\win8\Microsoft.Practices.Unity.dll">
+      <PackagePath>Microsoft.Practices.Unity.dll</PackagePath>
+      <Modified>2015-12-31T13:18:12.985</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Daniel\.nuget\packages\Unity\4.0.1\lib\win8\Microsoft.Practices.Unity.RegistrationByConvention.dll">
+      <PackagePath>Microsoft.Practices.Unity.RegistrationByConvention.dll</PackagePath>
+      <Modified>2015-12-31T13:18:12.991</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\DeathStarPFStarWars.png">
+      <PackagePath>Assets\DeathStarPFStarWars.png</PackagePath>
+      <Modified>2016-02-29T17:16:50.145</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Space.png">
+      <PackagePath>Assets\Space.png</PackagePath>
+      <Modified>2016-02-29T17:12:25.484</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-10-11T03:09:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\bin\x64\Debug\StarWars.xr.xml">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\Falcon.jpg">
+      <PackagePath>Assets\Falcon.jpg</PackagePath>
+      <Modified>2016-03-01T00:56:06.781</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Assets\X-Wing.jpg">
+      <PackagePath>Assets\X-Wing.jpg</PackagePath>
+      <Modified>2016-03-01T00:26:31.587</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
+      <Modified>2016-02-28T02:50:34.642</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\bin\x64\Debug\StarWars.xr.xml">
       <PackagePath>StarWars.xr.xml</PackagePath>
-      <Modified>2016-02-28T03:50:54.245</Modified>
+      <Modified>2016-03-01T01:02:52.574</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2015-12-24T19:00:01.572</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-02-28T13:31:52.026</Modified>
+      <Modified>2016-03-01T01:06:32.337</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Users\Daniel\Documents\Visual Studio 2015\Projects\StarWars\StarWars\bin\x64\Debug\Core\StarWars.exe">
+    <AppxPackagedFile Include="D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\bin\x64\Debug\Core\StarWars.exe">
       <PackagePath>StarWars.exe</PackagePath>
-      <Modified>2016-02-28T13:51:41.959</Modified>
+      <Modified>2016-03-01T01:06:32.573</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -1,2 +1,4 @@
 App.xbf
-MainPage.xbf
+Views\CloudSetupPage.xbf
+Views\MainPage.xbf
+Views\SettingsPage.xbf

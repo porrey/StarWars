@@ -101,7 +101,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Common\BindableModel.cs" />
+    <Compile Include="Common\BindablePage.cs" />
+    <Compile Include="Common\MagicValue.cs" />
+    <Compile Include="Converters\BooleanToRevealModeConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Events\Events.cs" />
+    <Compile Include="Interfaces\IApplicationSettingsRepository.cs" />
+    <Compile Include="Models\ApplicationSettingChangedEventArgs.cs" />
+    <Compile Include="Models\ExceptionEventArgs.cs" />
+    <Compile Include="Repositories\ApplicationSettingsRepository.cs" />
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CloudSetupPage.xaml.cs">
+      <DependentUpon>CloudSetupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +130,10 @@
     <None Include="StarWars_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\DeathStarPFStarWars.png" />
+    <Content Include="Assets\Falcon.jpg" />
+    <Content Include="Assets\Space.png" />
+    <Content Include="Assets\X-Wing.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -127,7 +148,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CloudSetupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
