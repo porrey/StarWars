@@ -1,550 +1,264 @@
-// Copyright © 2016 Daniel Porrey
-//
-// This file is part of the Interactive Star Wars 3D Art project
-// on hackster.io.
-//
-// This is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This software is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this software. If not, see http://www.gnu.org/licenses/.
-//
+#ifndef SENSOR_SMOOTHING_H
+#define SENSOR_SMOOTHING_H
 
-#include "Controller.h"
-#include "HC-SR04.h"
-#include "SensorSmoothing.h"
+#include <application.h>
+#include <math.h>
 
 // ***
-// *** These are the two pins the HC-SR04 is connected to.
+// *** The definition of the SensorSmoothing class.
 // ***
-#define TRIGGER_PIN D2
-#define ECHO_PIN D3
-
-// ***
-// *** These are the two pins the motion sensor is connected to.
-// ***
-#define MOTION_OUT D4
-#define MOTION_ENABLED D5
-
-// ***
-// *** Photoresistor Pin
-// ***
-#define PHOTORESISTOR_PIN A0
-
-// ***
-// *** Numbers of sampels to take for averaging.
-// ***
-#define NUMBER_OF_SAMPLES 5
-
-// ***
-// *** Default volume level
-// ***
-#define DEFALT_VOLUME 15
-
-// ***
-// *** This is the main controller to send commands
-// *** to all of the devices.
-// ***
-retained int _volume = DEFALT_VOLUME;
-
-// ***
-// *** Define the controller
-// ***
-Controller _controller = Controller();
-
-// ***
-// *** Create the SImplePing object for the
-// *** HC-SR04 (Ultrasonic Ranging Module).
-// ***
-HcSr04 _ranging = HcSr04();
-
-// ***
-// *** This variable indicates if there is current
-// *** motion detected.
-// ***
-bool _motion = false;
-
-// ***
-// *** This variable indicates if there is current
-// *** motion detected.
-// ***
-double _distance = 0.0;
-
-// ***
-// *** Analog value on photoresistor pin
-// ***
-int _light = 0;
-
-// ***
-// *** This object will be used to keep a running average
-// *** of readings with a sample size of NUMBER_OF_SAMPLES.
-// *** This is used to keep the ultrasonic sensor from being 
-// *** too sesnsitive or jumpy.
-// ***
-SensorSmoothing<double> _distanceSample = SensorSmoothing<double>(NUMBER_OF_SAMPLES);
-
-// ***
-// *** Timer used to monitor the sensor
-// ***
-Timer _sensorTimer(1000, onSensorTimer);
-
-// ***
-// *** Last time of an event
-// ***
-int _lastEventTime = 0;
-
-// ***
-// *** Light Threshold
-// ***
-#define DEFAULT_LIGHT_THRESHOLD 1000
-retained int _lightThreshold = DEFAULT_LIGHT_THRESHOLD;
-bool _lightBelowThreshold = false;
-bool _deathStarIsOn = false;
-
-// ***
-// *** Motion detecting parameters
-// ***
-retained int _minimumEventTime = 20;    // seconds
-retained int _minimumDistance = 127;    // (50 inches) parameter is cm
-
-void setup()
+template<typename T>
+class SensorSmoothing
 {
+  public:
     // ***
-    // *** Publish a setup message
+    // *** Initialie the library
     // ***
-    Particle.publish("Setup", "Started");
-    
-    // ***
-    // *** Enable backup RAM
-    // ***
-    STARTUP(System.enableFeature(FEATURE_RETAINED_MEMORY));
-    
-    // ***
-    // *** Initialize the HC-SR04 (Ultrasonic Ranging Module)
-    // ***
-    _ranging.begin(TRIGGER_PIN, ECHO_PIN);
-    
-    // ***
-    // *** Setup I2C
-    // ***
-    Wire.begin();
-  
-    // ***
-    // *** Initializwe the controller
-    // ***
-    _controller.begin(_volume);
-    
-    // ***
-    // *** Use the D7 LED indicate when the Light
-    // *** Saber is active.
-    // ***
-    pinMode(D7, OUTPUT);
-    digitalWrite(D7, LOW);
-    
-    // ***
-    // *** Set of the public variables
-    // ***
-    Particle.variable("motion", _motion);
-    Particle.variable("distance", _distance);
-    Particle.variable("light", _light);
+    SensorSmoothing(int sampleSize);
 
     // ***
-    // *** Publish functions
+    // *** Desctructor
     // ***
-    Particle.function("controller", controllerWebApi);
-    Particle.function("parameter", parameterWebApi);
-    Particle.function("test", testWebApi);
-    
-    // ***
-    // *** Set the last event time to
-    // *** the current time
-    // ***
-    _lastEventTime = Time.now();
-    
-    // ***
-    // *** Start the timer
-    // ***
-    _sensorTimer.start();
+    ~SensorSmoothing();
 
     // ***
-    // *** Gives the other boards time to start
-    // *** just in case this is a power up.
+    // *** Add a new sample to the array.
     // ***
-    delay(3000);
+    void addSample(const T i);
 
     // ***
-    // *** Reset
+    // *** Get last sample placed in the array.
     // ***
-    _controller.darthVaderOff();
-    _controller.lightSaberOff();
-    _controller.deathStarOff();
-    
+    T lastestSample () const;
+
     // ***
-    // *** Publish a setup message
+    // *** Get the number of items in the array.
     // ***
-    Particle.publish("Setup", "Completed");
-    
-    delay(2000);
-    testWebApi("");
+    int sampleCount;
+
+    // ***
+    // *** The size of the array.
+    // ***
+    int sampleSize;
+
+    // ***
+    // ***
+    // ***
+    T average() const;
+
+    // ***
+    // ***
+    // ***
+    T stddev() const;
+
+    // ***
+    // *** Returns a value from 0 and up indicating how stable (or unstable)
+    // *** the reading is. Unstable indicates that repeating readings are 
+    // *** changing a lot. The lower the value the greater the stability.
+    // ***
+    double stability();
+
+  private:
+    // ***
+    // *** The array of the array.
+    // ***
+    T *_samples;
+
+    // ***
+    // *** The top index of the array.
+    // ***
+    int _currentIndex;
+
+    // ***
+    // ***
+    // ***
+    void incrementIndex();
+};
+
+template<typename T>
+SensorSmoothing<T>::SensorSmoothing(int sampleSize)
+{
+  // ***
+  // *** Set the initial current index to 0.
+  // ***
+  this->_currentIndex = 0;
+
+  // ***
+  // *** Allocate enough memory for the array.
+  // ***
+  this->_samples = (T *) malloc (sizeof(T) * sampleSize);
+
+  // ***
+  // *** Check if there is a memory allocation error.
+  // ***
+  if (this->_samples != NULL)
+  {
+    // ***
+    // *** set the initial size of the array.
+    // ***
+    this->sampleSize = sampleSize;
+  }
+  else
+  {
+    this->sampleSize = 0;
+  }
 }
 
-void loop()
+template<typename T>
+SensorSmoothing<T>::~SensorSmoothing()
 {
-    // ***
-    // *** Temporarily cache the _lightBelowThreshold value.
-    // ***
-    bool previousLightBelowThreshold = _lightBelowThreshold;
+  // ***
+  // *** Deallocate the array of the internal array.
+  // ***
+  if (this->_samples != NULL)
+  {
+    free (this->_samples);
+  }
 
-    // ***
-    // *** Check for motion
-    // ***
-    if (_motion)
-    {
-        // ***
-        // *** Check the light level and see if
-        // *** it is dark enough to turn the LED
-        // *** on.
-        // ***
-        if (_light < _lightThreshold)
-        {
-            if(!previousLightBelowThreshold)
-            {
-                Particle.publish("Light", "Below Threshold");
-            }
-            
-            _lightBelowThreshold = true;
-            
-            // ***
-            // *** Turn the Death Star LED on
-            // ***
-            _deathStarIsOn = true;
-            _controller.deathStarOn();
-        }
-        else
-        {
-            if(previousLightBelowThreshold)
-            {
-                Particle.publish("Light", "Above Threshold");
-            }
-            
-            _lightBelowThreshold = false;
-        }
+  // ***
+  // *** Set the internal array's array pointer to nowhere.
+  // ***
+  this->_samples = NULL;
 
-        // ***
-        // *** Check if an object is within three feet.
-        // ***
-        if (_distance < _minimumDistance)
-        {
-            // ***
-            // *** Check if the minimum amount
-            // *** of time has passed since the
-            // *** last update.
-            // ***
-            if ((Time.now() - _lastEventTime) > _minimumEventTime)
-            {
-                Particle.publish("Object", "Detected");
+  // ***
+  // *** Set the size of the internal array to zero.
+  // ***
+  this->sampleSize = 0;
 
-                _lastEventTime = Time.now();
-                _controller.randomEvent();
-            }
-        }
-    }
-    else
-    {
-        // ***
-        // *** No motion detected
-        // ***
-        if (_deathStarIsOn)
-        {
-            // ***
-            // *** When the light is above the threshold, turn the
-            // *** Death Star LED off.
-            // ***
-            _deathStarIsOn = false;
-            _controller.deathStarOff();
-        }
-    }
-    
-    // ***
-    // *** Delay
-    // ***
-    delay(150);
+  // ***
+  // *** Set the initial top index of the internal array.
+  // ***
+  this->_currentIndex = 0;
 }
 
-void onSensorTimer()
+template<typename T>
+void SensorSmoothing<T>::addSample(const T i)
 {
+  if (this->sampleSize > 0)
+  {
     // ***
-    // *** Check the motion sensor
+    // *** store the item to the array.
     // ***
-    bool previousMotion = _motion;
-    
-    // ***
-    // *** Get the current motion sesnsor value.
-    // ***
-    _motion = (digitalRead(MOTION_OUT) == HIGH);
-    
-    // ***
-    // *** Only publish and event when the status of the motion
-    // *** sensor hs changed.
-    // ***
-    if (!previousMotion && _motion)
-    {
-        Particle.publish("Motion", "Detected");
-        
-        if (_lightBelowThreshold)
-        {
-            Particle.publish("Light Level", "Below Threshold: " + String(_light) + "/" + String(_lightThreshold));
-        }
-        else
-        {
-            Particle.publish("Light Level", "Above Threshold: " + String(_light) + "/" + String(_lightThreshold));
-        }
+    this->_samples[this->_currentIndex] = i;
 
-        // ***
-        // *** Publish an event showing the distance of the
-        // *** object in front of the board.
-        // ***
-        Particle.publish("Distance", String(String(_distance / 2.54).toInt()) + " in / " + String(String(_minimumDistance / 2.54).toInt()) + " in");
-        
-        // ***
-        // *** Publish an event showing the amount of time until 
-        // *** the next event can be triggered.
-        // ***
-        Particle.publish("Time", "Last Event: " + String(Time.now() - _lastEventTime) + " second(s) ago");
-        
-    }
-    else if (previousMotion && !_motion)
+    // ***
+    // *** Increments to the next storage position
+    // *** in the array.
+    // ***
+    this->incrementIndex();
+
+    // ***
+    // *** The sample size will increment until
+    // *** it reaches the beginning.
+    // ***
+    if (this->sampleCount < this->sampleSize)
     {
-        Particle.publish("Motion", "Reset");
+      this->sampleCount++;
     }
-    
-    // ***
-    // *** Get the distance from the Ultrasonic
-    // *** sensor.
-    // ***
-    _distance = getRangeEx();
-    
-    // ***
-    // *** Get the photoresistor value
-    // ***
-    _light = analogRead(PHOTORESISTOR_PIN);
+  }
 }
 
-// ***
-// *** Web API
-// ***
-int testWebApi(String command)
+template<typename T>
+void SensorSmoothing<T>::incrementIndex()
 {
-    // ***
-    // *** Test
-    // ***
-    Particle.publish("Test", "Running");
-    
-    _controller.darthVaderOn();
-    delay(200);
-    _controller.deathStarOn();
-    
-    delay(2000);
-    //_controller.darthVaderVoice(3);
-    //delay(5000);
-    
-    _controller.lightSaberOn(7000);
-    delay(2000);
-    
-    _controller.darthVaderOff();
-    _controller.deathStarOff();
+  // ***
+  // *** Increment to the next position in the array.
+  // ***
+  this->_currentIndex++;
 
-    Particle.publish("Test", "Completed");
-    return 1;
+  // ***
+  // *** If we go past the end of the array
+  // *** wrap back to the beginning.
+  // ***
+  if (this->_currentIndex == this->sampleSize)
+  {
+    this->_currentIndex = 0;
+  }
 }
 
-// ***
-// *** Web API
-// ***
-int parameterWebApi(String command)
+template<typename T>
+T SensorSmoothing<T>::average() const
 {
-    int returnValue = 0;
+  T returnValue = 0;
 
-    // ***
-    // *** If the command contains an equal
-    // *** sign , assume it is trying to
-    // *** set the value of a paramerer.
-    // ***
-    int equalIndex = command.indexOf("=");
+  if (this->sampleCount > 0)
+  {
+    T sum = 0;
 
-    // ***
-    // *** Check the value of command for the type
-    // *** of parameter call.
-    // ***
-    if(equalIndex > 0)
+    for (int i = 0; i < this->sampleCount; i++)
     {
-        // ***
-        // *** This command is to set a variable value
-        // ***
-        String parameterName = command.substring(0, equalIndex);
-        String value = command.substring(equalIndex + 1, command.length());
-        
-        if (parameterName == "volume")
-        {
-            _volume = value.toInt();
-            _controller.setVolume(_volume);
-        }
-        else if (parameterName == "minimumDistance")
-        {
-            _minimumDistance = value.toInt();
-        }
-        else if (parameterName == "lightThreshold")
-        {
-            _lightThreshold = value.toInt();
-        }
-        else if (parameterName == "minimumEventTime")
-        {
-            _minimumEventTime = value.toInt();
-        }
-        
-        // ***
-        // *** Publish the parameter
-        // ***
-        Particle.publish("Set Parameter", parameterName + " = " + value);
-        
-        // ***
-        // *** Return the value
-        // ***
-        returnValue = value.toInt();
+      sum += this->_samples[i];
     }
-    else if(equalIndex == -1)
-    {
-        // ***
-        // *** If the command matches a name
-        // *** return the value.
-        // ***
-        if (command == "volume")
-        {
-           returnValue =  _volume;
-        }
-        else if (command == "minimumDistance")
-        {
-            returnValue = _minimumDistance;
-        }
-        else if (command == "lightThreshold")
-        {
-            returnValue = _lightThreshold;
-        }
-        else if (command == "minimumEventTime")
-        {
-            returnValue = _minimumEventTime;
-        }
-        
-        // ***
-        // *** Publish the parameter
-        // ***
-        Particle.publish("Get Parameter", command);
-    }
-    else if (command == "reset")
-    {
-        // ***
-        // *** Reset the parameters to default values
-        // ***
-        _volume = DEFALT_VOLUME;
-        _controller.setVolume(_volume);
-        _minimumDistance = 50 * 2.54;
-        _lightThreshold = 1000;
-        _minimumEventTime = 20;
-        _lightThreshold = DEFAULT_LIGHT_THRESHOLD;
 
-        // ***
-        // *** Publish the parameter
-        // ***
-        Particle.publish("Reset Parameters", "");
+    returnValue = sum / this->sampleCount;
+  }
 
-        returnValue = 1;
-    }
-    
-    return returnValue;
+  return returnValue;
 }
 
-// ***
-// *** Web API
-// ***
-int controllerWebApi(String command)
+template<typename T>
+T SensorSmoothing<T>::stddev() const
 {
-    int returnValue = 0;
+  T returnValue = 0;
+
+  if (this->sampleCount > 0)
+  {
+    T sum = 0;
 
     // ***
-    // *** Publish the parameter
+    // *** Get the average
     // ***
-    Particle.publish("Controller", command);
+    T average = this->average();
 
-    // ***
-    // *** Pass the command to the controller.
-    // ***
-    returnValue = _controller.executeCommand(command);
+    for (int i = 0; i < this->sampleCount; i++)
+    {
+      // ***
+      // *** Sum the square of the difference of
+      // *** the average to the value.
+      // ***
+      T difference = average - this->_samples[i];
+      sum += (difference * difference);
+    }
 
-    return returnValue;
+    returnValue = sqrt(sum);
+  }
+
+  return returnValue;
 }
 
-double getRangeEx()
+template<typename T>
+T SensorSmoothing<T>::lastestSample () const
 {
-    double returnValue = 0;
-    
-    // ***
-    // *** Get the distance in centimeters
-    // ***
-    Range range;
+  T returnValue = 0;
 
-    if (_ranging.getRange(&range))
-    {
-        // ***
-        // *** Add the sample
-        // ***
-        _distanceSample.addSample(range.distance);
-        
-        // ***
-        // *** Return the average distance
-        // ***
-        returnValue = _distanceSample.average();
-    }
-    else
-    {
-        // ***
-        // *** Check the result
-        // ***
-        if (range.result == timeFailed)
-        {
-            switch (range.pingTime.result)
-            {
-                case alreadyActive:
-                    Particle.publish("Result", "The sensor is busy.");
-                    break;
-                case timeout:
-                    Particle.publish("Result", "The sensor did not respond.");
-                    break;
-            }
-        }
-        else if (range.result == underRange)
-        {
-            switch (range.result)
-            {
-                case underRange:
-                    Particle.publish("Result", "The object is too close.");
-                    break;
-                case overRange:
-                    Particle.publish("Result", "No object is in range.");
-                    break;
-            }
-        }
-        else
-        {
-            Particle.publish("Result", "Unknown Error.");
-        }
-    }
-    
-    return returnValue;
+  // ***
+  // *** Check if the array is empty.
+  // ***
+  if (this->sampleCount > 0)
+  {
+    // ***
+    // *** Get the top item from the array.
+    // ***
+    returnValue = this->_samples[this->_currentIndex];
+  }
+
+  return returnValue;
 }
+
+template<typename T>
+double SensorSmoothing<T>::stability()
+{
+  double returnValue = 1.0;
+
+  // ***
+  // *** Determine the Coefficient of Variance (normalized
+  // *** standard deviation)
+  // ***
+  if (this->average() > 0)
+  {
+    returnValue = this->stddev() / this->average();
+  }
+
+  return returnValue;
+}
+#endif
