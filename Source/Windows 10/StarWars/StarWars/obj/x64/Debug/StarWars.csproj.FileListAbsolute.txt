@@ -402,4 +402,3 @@ D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x6
 D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x64\Debug\Views\SettingsPage.g.cs
 D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x64\Debug\Views\SettingsPage.xaml
 D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x64\Debug\Views\SettingsPage.xbf
-D:\Users\Daniel\Source\repos\StarWars\Source\Windows 10\StarWars\StarWars\obj\x64\Debug\StarWars.csprojResolveAssemblyReference.cache

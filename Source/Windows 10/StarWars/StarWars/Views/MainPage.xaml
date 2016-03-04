@@ -144,7 +144,7 @@
 							<Button  Content="Turn On"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="LightSaber_On_Click"
+									 Click="LightSaberOn_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -158,7 +158,7 @@
 							<Button  Content="Breathe"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="BreatheButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -167,7 +167,7 @@
 							<Button  Content="Darkside"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="DarkSideButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -176,7 +176,7 @@
 							<Button  Content="Taught You Well"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="TaughtButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -185,7 +185,7 @@
 							<Button  Content="Last Time"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="LastTimeButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -194,7 +194,7 @@
 							<Button  Content="Give In"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="GiveInButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -203,7 +203,7 @@
 							<Button  Content="Resist"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="ResistButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -212,7 +212,7 @@
 							<Button  Content="Destroy"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="DestroyButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">
@@ -221,7 +221,7 @@
 							<Button  Content="Respect"
 									 HorizontalAlignment="Stretch"
 									 Margin="20,10,20,10"
-									 Click="Button_Click"
+									 Click="RespectButton_Click"
 									 Foreground="#FFFFFFFF"
 									 BorderBrush="#FFFF0000"
 									 Background="#66AC0000">

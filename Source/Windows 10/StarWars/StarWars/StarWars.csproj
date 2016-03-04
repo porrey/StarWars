@@ -97,7 +97,7 @@
     <Compile Include="Api\Variable.cs" />
     <Compile Include="Api\IApi.cs" />
     <Compile Include="Api\ICloudIdentity.cs" />
-    <Compile Include="Api\Function.cs" />
+    <Compile Include="Api\CloudFunction.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
