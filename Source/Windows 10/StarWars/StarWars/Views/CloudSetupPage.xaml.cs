@@ -16,6 +16,7 @@
 // along with Star Wars 3D Art Solution. If not, see http://www.gnu.org/licenses/.
 //
 using System;
+using Microsoft.Practices.ServiceLocation;
 using StarWars.Common;
 using Windows.UI.Xaml;
 
@@ -39,6 +40,45 @@ namespace StarWars.Views
 			set
 			{
 				this.SetProperty(ref _isPaneOpen, value);
+			}
+		}
+
+		public string DeviceId
+		{
+			get
+			{
+				return this.ApplicationSettings.DeviceId;
+			}
+			set
+			{
+				this.ApplicationSettings.DeviceId = value;
+				this.OnPropertyChanged();
+			}
+		}
+
+		public string ApiKey
+		{
+			get
+			{
+				return this.ApplicationSettings.ApiKey;
+			}
+			set
+			{
+				this.ApplicationSettings.ApiKey = value;
+				this.OnPropertyChanged();
+			}
+		}
+
+		public bool? ShowLifxApiKey
+		{
+			get
+			{
+				return this.ApplicationSettings.ShowApiKey;
+			}
+			set
+			{
+				this.ApplicationSettings.ShowApiKey = value.HasValue ? value.Value : false;
+				this.OnPropertyChanged();
 			}
 		}
 		#endregion

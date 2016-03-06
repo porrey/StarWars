@@ -132,7 +132,7 @@ namespace StarWars.StarWars_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[12];
+            _typeNameTable = new string[15];
             _typeNameTable[0] = "StarWars.Converters.InvertedBooleanConverter";
             _typeNameTable[1] = "Object";
             _typeNameTable[2] = "StarWars.Converters.BooleanToRevealModeConverter";
@@ -143,10 +143,13 @@ namespace StarWars.StarWars_XamlTypeInfo
             _typeNameTable[7] = "Boolean";
             _typeNameTable[8] = "String";
             _typeNameTable[9] = "StarWars.Views.SettingsPage";
-            _typeNameTable[10] = "StarWars.Views.CloudSetupPage";
-            _typeNameTable[11] = "StarWars.Views.MainPage";
+            _typeNameTable[10] = "Int32";
+            _typeNameTable[11] = "StarWars.Views.CloudSetupPage";
+            _typeNameTable[12] = "System.Nullable`1<Boolean>";
+            _typeNameTable[13] = "System.ValueType";
+            _typeNameTable[14] = "StarWars.Views.MainPage";
 
-            _typeTable = new global::System.Type[12];
+            _typeTable = new global::System.Type[15];
             _typeTable[0] = typeof(global::StarWars.Converters.InvertedBooleanConverter);
             _typeTable[1] = typeof(global::System.Object);
             _typeTable[2] = typeof(global::StarWars.Converters.BooleanToRevealModeConverter);
@@ -157,8 +160,11 @@ namespace StarWars.StarWars_XamlTypeInfo
             _typeTable[7] = typeof(global::System.Boolean);
             _typeTable[8] = typeof(global::System.String);
             _typeTable[9] = typeof(global::StarWars.Views.SettingsPage);
-            _typeTable[10] = typeof(global::StarWars.Views.CloudSetupPage);
-            _typeTable[11] = typeof(global::StarWars.Views.MainPage);
+            _typeTable[10] = typeof(global::System.Int32);
+            _typeTable[11] = typeof(global::StarWars.Views.CloudSetupPage);
+            _typeTable[12] = typeof(global::System.Nullable<global::System.Boolean>);
+            _typeTable[13] = typeof(global::System.ValueType);
+            _typeTable[14] = typeof(global::StarWars.Views.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -197,8 +203,8 @@ namespace StarWars.StarWars_XamlTypeInfo
         private object Activate_2_BooleanToRevealModeConverter() { return new global::StarWars.Converters.BooleanToRevealModeConverter(); }
         private object Activate_3_BooleanToVisibilityConverter() { return new global::StarWars.Converters.BooleanToVisibilityConverter(); }
         private object Activate_9_SettingsPage() { return new global::StarWars.Views.SettingsPage(); }
-        private object Activate_10_CloudSetupPage() { return new global::StarWars.Views.CloudSetupPage(); }
-        private object Activate_11_MainPage() { return new global::StarWars.Views.MainPage(); }
+        private object Activate_11_CloudSetupPage() { return new global::StarWars.Views.CloudSetupPage(); }
+        private object Activate_14_MainPage() { return new global::StarWars.Views.MainPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -264,21 +270,42 @@ namespace StarWars.StarWars_XamlTypeInfo
                 userType = new global::StarWars.StarWars_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("StarWars.Common.BindablePage"));
                 userType.Activator = Activate_9_SettingsPage;
                 userType.AddMemberName("IsPaneOpen");
+                userType.AddMemberName("Volume");
+                userType.AddMemberName("Distance");
+                userType.AddMemberName("LightLevel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  StarWars.Views.CloudSetupPage
+            case 10:   //  Int32
+                xamlType = new global::StarWars.StarWars_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  StarWars.Views.CloudSetupPage
                 userType = new global::StarWars.StarWars_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("StarWars.Common.BindablePage"));
-                userType.Activator = Activate_10_CloudSetupPage;
+                userType.Activator = Activate_11_CloudSetupPage;
                 userType.AddMemberName("IsPaneOpen");
+                userType.AddMemberName("DeviceId");
+                userType.AddMemberName("ApiKey");
+                userType.AddMemberName("ShowLifxApiKey");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 11:   //  StarWars.Views.MainPage
+            case 12:   //  System.Nullable`1<Boolean>
+                userType = new global::StarWars.StarWars_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 13:   //  System.ValueType
+                userType = new global::StarWars.StarWars_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                xamlType = userType;
+                break;
+
+            case 14:   //  StarWars.Views.MainPage
                 userType = new global::StarWars.StarWars_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("StarWars.Common.BindablePage"));
-                userType.Activator = Activate_11_MainPage;
+                userType.Activator = Activate_14_MainPage;
                 userType.AddMemberName("IsPaneOpen");
                 userType.SetIsLocalType();
                 xamlType = userType;
@@ -328,22 +355,82 @@ namespace StarWars.StarWars_XamlTypeInfo
             var that = (global::StarWars.Views.SettingsPage)instance;
             that.IsPaneOpen = (global::System.Boolean)Value;
         }
-        private object get_4_CloudSetupPage_IsPaneOpen(object instance)
+        private object get_4_SettingsPage_Volume(object instance)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            return that.Volume;
+        }
+        private void set_4_SettingsPage_Volume(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            that.Volume = (global::System.Int32)Value;
+        }
+        private object get_5_SettingsPage_Distance(object instance)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            return that.Distance;
+        }
+        private void set_5_SettingsPage_Distance(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            that.Distance = (global::System.Int32)Value;
+        }
+        private object get_6_SettingsPage_LightLevel(object instance)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            return that.LightLevel;
+        }
+        private void set_6_SettingsPage_LightLevel(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.SettingsPage)instance;
+            that.LightLevel = (global::System.Int32)Value;
+        }
+        private object get_7_CloudSetupPage_IsPaneOpen(object instance)
         {
             var that = (global::StarWars.Views.CloudSetupPage)instance;
             return that.IsPaneOpen;
         }
-        private void set_4_CloudSetupPage_IsPaneOpen(object instance, object Value)
+        private void set_7_CloudSetupPage_IsPaneOpen(object instance, object Value)
         {
             var that = (global::StarWars.Views.CloudSetupPage)instance;
             that.IsPaneOpen = (global::System.Boolean)Value;
         }
-        private object get_5_MainPage_IsPaneOpen(object instance)
+        private object get_8_CloudSetupPage_DeviceId(object instance)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            return that.DeviceId;
+        }
+        private void set_8_CloudSetupPage_DeviceId(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            that.DeviceId = (global::System.String)Value;
+        }
+        private object get_9_CloudSetupPage_ApiKey(object instance)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            return that.ApiKey;
+        }
+        private void set_9_CloudSetupPage_ApiKey(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            that.ApiKey = (global::System.String)Value;
+        }
+        private object get_10_CloudSetupPage_ShowLifxApiKey(object instance)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            return that.ShowLifxApiKey;
+        }
+        private void set_10_CloudSetupPage_ShowLifxApiKey(object instance, object Value)
+        {
+            var that = (global::StarWars.Views.CloudSetupPage)instance;
+            that.ShowLifxApiKey = (global::System.Nullable<global::System.Boolean>)Value;
+        }
+        private object get_11_MainPage_IsPaneOpen(object instance)
         {
             var that = (global::StarWars.Views.MainPage)instance;
             return that.IsPaneOpen;
         }
-        private void set_5_MainPage_IsPaneOpen(object instance, object Value)
+        private void set_11_MainPage_IsPaneOpen(object instance, object Value)
         {
             var that = (global::StarWars.Views.MainPage)instance;
             that.IsPaneOpen = (global::System.Boolean)Value;
@@ -380,17 +467,53 @@ namespace StarWars.StarWars_XamlTypeInfo
                 xamlMember.Getter = get_3_SettingsPage_IsPaneOpen;
                 xamlMember.Setter = set_3_SettingsPage_IsPaneOpen;
                 break;
+            case "StarWars.Views.SettingsPage.Volume":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.SettingsPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "Volume", "Int32");
+                xamlMember.Getter = get_4_SettingsPage_Volume;
+                xamlMember.Setter = set_4_SettingsPage_Volume;
+                break;
+            case "StarWars.Views.SettingsPage.Distance":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.SettingsPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "Distance", "Int32");
+                xamlMember.Getter = get_5_SettingsPage_Distance;
+                xamlMember.Setter = set_5_SettingsPage_Distance;
+                break;
+            case "StarWars.Views.SettingsPage.LightLevel":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.SettingsPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "LightLevel", "Int32");
+                xamlMember.Getter = get_6_SettingsPage_LightLevel;
+                xamlMember.Setter = set_6_SettingsPage_LightLevel;
+                break;
             case "StarWars.Views.CloudSetupPage.IsPaneOpen":
                 userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.CloudSetupPage");
                 xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "IsPaneOpen", "Boolean");
-                xamlMember.Getter = get_4_CloudSetupPage_IsPaneOpen;
-                xamlMember.Setter = set_4_CloudSetupPage_IsPaneOpen;
+                xamlMember.Getter = get_7_CloudSetupPage_IsPaneOpen;
+                xamlMember.Setter = set_7_CloudSetupPage_IsPaneOpen;
+                break;
+            case "StarWars.Views.CloudSetupPage.DeviceId":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.CloudSetupPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "DeviceId", "String");
+                xamlMember.Getter = get_8_CloudSetupPage_DeviceId;
+                xamlMember.Setter = set_8_CloudSetupPage_DeviceId;
+                break;
+            case "StarWars.Views.CloudSetupPage.ApiKey":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.CloudSetupPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "ApiKey", "String");
+                xamlMember.Getter = get_9_CloudSetupPage_ApiKey;
+                xamlMember.Setter = set_9_CloudSetupPage_ApiKey;
+                break;
+            case "StarWars.Views.CloudSetupPage.ShowLifxApiKey":
+                userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.CloudSetupPage");
+                xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "ShowLifxApiKey", "System.Nullable`1<Boolean>");
+                xamlMember.Getter = get_10_CloudSetupPage_ShowLifxApiKey;
+                xamlMember.Setter = set_10_CloudSetupPage_ShowLifxApiKey;
                 break;
             case "StarWars.Views.MainPage.IsPaneOpen":
                 userType = (global::StarWars.StarWars_XamlTypeInfo.XamlUserType)GetXamlTypeByName("StarWars.Views.MainPage");
                 xamlMember = new global::StarWars.StarWars_XamlTypeInfo.XamlMember(this, "IsPaneOpen", "Boolean");
-                xamlMember.Getter = get_5_MainPage_IsPaneOpen;
-                xamlMember.Setter = set_5_MainPage_IsPaneOpen;
+                xamlMember.Getter = get_11_MainPage_IsPaneOpen;
+                xamlMember.Setter = set_11_MainPage_IsPaneOpen;
                 break;
             }
             return xamlMember;

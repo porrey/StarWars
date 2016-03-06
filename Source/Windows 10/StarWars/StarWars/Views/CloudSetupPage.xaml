@@ -133,19 +133,24 @@
 				<SplitView.Content>
 					<StackPanel Orientation="Vertical"
 								Margin="10,20,10,20">
+
 						<TextBlock Text="Device ID"
 								   Margin="0,10,0,10" />
-						<PasswordBox Password="2a0020000d47343432313031" />
+						<PasswordBox PasswordRevealMode="{Binding IsChecked, ElementName=ShowApiKeyCheckbox, Converter={StaticResource BooleanToRevealModeConverter}, Mode=OneWay}"
+									 Password="{x:Bind DeviceId, Mode=TwoWay}" />
+
 						<TextBlock Text="API Key"
 								   Margin="0,30,0,10" />
-						<PasswordBox Password="6158d78095b526dc8a710ab47db150e122e6ddc7" />
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Show Key"
-									   HorizontalAlignment="Left"
-									   VerticalAlignment="Center"
-									   Margin="0,10,10,10" />
-							<CheckBox />
-						</StackPanel>
+						<PasswordBox PasswordRevealMode="{Binding IsChecked, ElementName=ShowApiKeyCheckbox, Converter={StaticResource BooleanToRevealModeConverter}, Mode=OneWay}"
+									 Password="{x:Bind ApiKey, Mode=TwoWay}" />
+
+						<CheckBox x:Name="ShowApiKeyCheckbox"
+								  IsChecked="{x:Bind ShowLifxApiKey, Mode=TwoWay}"
+								  Margin="0,20,0,0">
+							<CheckBox.Content>
+								<TextBlock Text="Show Key" />
+							</CheckBox.Content>
+						</CheckBox>
 					</StackPanel>
 				</SplitView.Content>
 			</SplitView>

@@ -135,13 +135,13 @@
 								Margin="10,20,10,20">
 						<TextBlock Text="Volume"
 								   Margin="0,10,0,10" />
-						<Slider Value="12"
-								Minimum="0"
-								Maximum="20" />
+						<Slider Minimum="0"
+								Maximum="20"
+								Value="{x:Bind Volume}" />
 
-						<TextBlock Text="Distance (cm)"
+						<TextBlock Text="Distance Threshold (cm)"
 								   Margin="0,30,0,10" />
-						<TextBox Text="150" />
+						<TextBox Text="{x:Bind Distance}" />
 
 						<TextBlock Text="Light level"
 								   Margin="0,30,0,10" />

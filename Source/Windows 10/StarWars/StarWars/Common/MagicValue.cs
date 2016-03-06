@@ -36,6 +36,23 @@ namespace StarWars.Common
 			}
 		}
 
+		public static class RemoteDevice
+		{
+			public static class Function
+			{
+				public const string Parameter = "parameter";
+				public const string SetParameterFormat = "{0}={1}";
+				public const string GetParameterFormat = "{0}";
+			}
+
+			public static class Parameter
+			{
+				public const string Volume = "volume";
+				public const string DistanceThreshod = "distance";
+				public const string LightLevel = "lightLevel";
+			}
+		}
+
 		// ***
 		// *** These items must match a key in the string resource file
 		// ***

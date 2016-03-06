@@ -104,6 +104,7 @@
     <Compile Include="Common\BindableModel.cs" />
     <Compile Include="Common\BindablePage.cs" />
     <Compile Include="Common\MagicValue.cs" />
+    <Compile Include="Common\TaskExtensions.cs" />
     <Compile Include="Converters\BooleanToRevealModeConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
