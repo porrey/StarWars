@@ -1,0 +1,1 @@
+C:\Users\Daniel\Source\GitHub\StarWars\Source\Windows 10\StarWars\StarWars\StarWars.csproj;x64

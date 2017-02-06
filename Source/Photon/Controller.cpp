@@ -246,7 +246,7 @@ int Controller::executeCommand(String command)
     }
     else if (command == "lightSaberOn")
     {
-        this->lightSaberOn(6);
+        this->lightSaberOn(6000);
         returnValue = 5;
     }
     else if (command == "lightSaberOff")
